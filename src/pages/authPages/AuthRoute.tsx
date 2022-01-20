@@ -6,7 +6,7 @@ interface Props {
 }
 const AuthRoute: FC<Props> = (props) => {
     return (
-        <div>
+        <div className="">
             <Route path="/login">
                 <LoginPage></LoginPage>
             </Route>
