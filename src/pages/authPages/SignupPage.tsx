@@ -4,9 +4,9 @@ interface Props {
 }
 const SignupPage: FC<Props> = (props) => {
     return (
-        <div className="bg-gray-800  h-screen  w-screen">
+        <div className="bg-slate-300  h-screen  w-screen">
             <div className="flex flex-col items-center flex-1 max-h-screen pt-12 justify-center px-4 sm:px-0" style={{ height: "575px" }}>
-                <div className="flex rounded-lg shadow-lg w-full h-screen  sm:w-3/4 lg:w-1/2 bg-white sm:mx-0">
+                <div className="flex rounded-lg shadow-2xl  w-full h-screen  sm:w-3/4 lg:w-1/2 bg-white sm:mx-0">
                     <div className="flex flex-col w-full md:w-1/2 p-4">
                         <div className="flex flex-col flex-1 justify-center mb-8">
                             <h1 className="text-4xl text-center font-thin">Create an account</h1>
@@ -49,7 +49,7 @@ const SignupPage: FC<Props> = (props) => {
                             </div>
                         </div>
                     </div>
-                    <div className="hidden md:block md:w-1/2 rounded-r-lg bg-slate-300 pt-12">
+                    <div className="hidden md:block md:w-1/2 rounded-r-lg bg-white shadow-2xl pt-12">
                         <div className="items-center">
                             <img className="h-60 w-60 m-auto" src="https://helios-i.mashable.com/imagery/articles/057j8wdpMlBCEcPRqiVe4DY/images-17.fit_lim.size_2000x.v1619018994.png" alt="logo" />
                             <div className="pt-8">
