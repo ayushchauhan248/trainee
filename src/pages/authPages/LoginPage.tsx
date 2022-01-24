@@ -7,7 +7,7 @@ interface Props {
 }
 const LoginPage: FC<Props> = (props) => {
     const history = useHistory();
-    const { handleSubmit, handleChange, handleBlur, touched, values, errors, isSubmitting } = useFormik({
+    const { handleSubmit, getFieldProps, touched, errors, isSubmitting } = useFormik({
         initialValues: {
             email: "",
             password: "",
@@ -35,7 +35,7 @@ const LoginPage: FC<Props> = (props) => {
                                     method="POST"
                                     action="#"
                                     onSubmit={handleSubmit}>
-                                    <div className="flex items-center border-2 py-2 px-3 rounded-2xl">
+                                    <div className="flex items-center border-2 py-2 px-3 rounded-2xl mb-5">
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -43,23 +43,18 @@ const LoginPage: FC<Props> = (props) => {
                                         </svg>
                                         <input
                                             className="pl-2 outline-none border-none"
-                                            type="text"
-                                            name="email"
+                                            type="email"
                                             id="email"
                                             placeholder="Email Address"
-                                            value={values.email}
-                                            onChange={handleChange}
-                                            onBlur={handleBlur}
+                                            {...getFieldProps("email")}
                                         />
                                     </div>
-
-
                                     {
                                         touched.email && <div className="ml-4">
-                                            <span className="text-red-700 text-sm">{errors.email}</span>
+                                            <span className="text-red-700 text-sm absolute -mt-5">{errors.email}</span>
                                         </div>
                                     }
-                                    <div className="flex items-center border-2 py-2 px-3 rounded-2xl">
+                                    <div className="flex items-center border-2 py-2 px-3 rounded-2xl mb-5">
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" viewBox="0 0 20 20"
                                             fill="currentColor">
                                             <path fill-rule="evenodd"
@@ -68,25 +63,22 @@ const LoginPage: FC<Props> = (props) => {
                                         </svg>
                                         <input
                                             className="pl-2 outline-none border-none"
-                                            type="text"
-                                            name="password"
+                                            type="password"
                                             id="password"
                                             placeholder="Password"
-                                            value={values.password}
-                                            onChange={handleChange}
-                                            onBlur={handleBlur}
+                                            {...getFieldProps("password")}
                                         />
                                     </div>
                                     {
                                         touched.password && <div className="ml-4">
-                                            <span className="text-red-700 text-sm">{errors.password}</span>
+                                            <span className="text-red-700 text-sm absolute -mt-5">{errors.password}</span>
                                         </div>
                                     }
-                                    <div className="flex flex-col mt-4">
-                                        {isSubmitting &&
+                                    <div className="flex flex-col mt-8">
+                                        {isSubmitting ?
                                             <div className="mx-auto pb-3">
                                                 <ImSpinner10 className="animate-spin h-8 w-8"></ImSpinner10>
-                                            </div>
+                                            </div> : <div className="h-11"></div>
                                         }
 
                                         <button type="submit" className="bg-slate-600 hover:bg-slate-700 text-white text-sm font-semibold py-2 px-4 rounded">
