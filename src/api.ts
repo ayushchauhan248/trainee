@@ -8,6 +8,14 @@ axios.interceptors.request.use((config) => {
     return { ...config, headers: { ...config.headers, Authorization: token } }
 })
 
+axios.interceptors.request.use(undefined, (error) => {
+    if (error.response.data.code === 9101) {
+        localStorage.removeItem(LS_TOKEN);
+        window.location.href = "/login"
+    }
+    return Promise.reject(error);
+})
+
 export const BASE_URL = "https://api-dev.domecompass.com";
 export const LS_TOKEN = "login_token"
 
@@ -42,6 +50,11 @@ export const login = (data: LoginRequest) => {
     })
 }
 
+
+export const logout = () => {
+    localStorage.removeItem(LS_TOKEN);
+}
+
 interface GroupRequest {
     limit?: number;
     offset?: number;
@@ -59,6 +72,8 @@ export const fetchGroups = (data: GroupRequest) => {
         }
     ).catch(e => console.error(e))
 }
+
+
 
 
 

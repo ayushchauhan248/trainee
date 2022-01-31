@@ -1,5 +1,5 @@
 import { FC, memo, useEffect } from "react";
-import { fetchGroups } from "../../api";
+import { fetchGroups, logout } from "../../api";
 interface Props {
 }
 const DashboardPage: FC<Props> = (props) => {
@@ -8,7 +8,17 @@ const DashboardPage: FC<Props> = (props) => {
     }, [])
     return (
         <div>
-            this is dashboard page
+            <div>
+                this is dashbaord page
+            </div>
+            <button
+                className="bg-slate-600 hover:bg-slate-700 text-white font-semibold px-4 py-1 rounded-md mr-6"
+                onClick={() => {
+                    logout();
+                    window.location.href = "/login";
+                }}>
+                Logout
+            </button>
         </div>
     );
 };
