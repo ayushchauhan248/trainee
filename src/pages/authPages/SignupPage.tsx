@@ -19,7 +19,7 @@ const SignupPage: FC<Props> = (props) => {
             password: yup.string().required().min(8)
         }),
         onSubmit: (data, { setSubmitting }) => {
-            console.log("data is", data)
+
             setTimeout(() => {
                 history.push("/dashboard");
             }, 5000)

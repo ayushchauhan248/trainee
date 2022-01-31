@@ -3,6 +3,7 @@ import { FC, memo } from "react";
 import { Link, useHistory } from "react-router-dom";
 import * as yup from "yup";
 import { ImSpinner10 } from 'react-icons/im'
+import { login } from "../../api";
 interface Props {
 }
 const LoginPage: FC<Props> = (props) => {
@@ -16,11 +17,9 @@ const LoginPage: FC<Props> = (props) => {
             email: yup.string().required().email(),
             password: yup.string().required().min(8)
         }),
-        onSubmit: (data, { setSubmitting }) => {
-            console.log("data is", data)
-            setTimeout(() => {
-                history.push("/dashboard");
-            }, 5000)
+        onSubmit: (data) => {
+            login(data).then(() =>
+                history.push("/dashboard"))
         }
     })
     return (
