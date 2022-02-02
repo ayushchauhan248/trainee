@@ -1,5 +1,6 @@
 import { FC, memo, useEffect, useState } from "react";
-import { fetchGroups, logout } from "../../api";
+import { logout } from "../api/authApi";
+import { fetchGroups } from "../api/groupApi";
 interface Props {
 }
 const DashboardPage: FC<Props> = (props) => {

@@ -3,7 +3,7 @@ import { FC, memo } from "react";
 import { Link, useHistory } from "react-router-dom";
 import * as yup from "yup";
 import { ImSpinner10 } from 'react-icons/im'
-import { login } from "../../api";
+import { login } from "../api/authApi";
 interface Props {
 }
 const LoginPage: FC<Props> = (props) => {

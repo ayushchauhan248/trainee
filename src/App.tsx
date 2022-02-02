@@ -1,6 +1,6 @@
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom';
-import { LS_TOKEN } from './api';
+import { LS_TOKEN } from './pages/api/base';
 import AppRoute from './pages/appContainerPages/AppRoute';
 import AuthRoute from './pages/authPages/AuthRoute';
 import NotFound from './pages/NotFound';
