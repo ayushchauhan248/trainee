@@ -58,17 +58,16 @@ export const logout = () => {
 interface GroupRequest {
     limit?: number;
     offset?: number;
-    query?: number;
+    query?: string;
     status: "all-groups" | "favorites"
 }
 
 
 export const fetchGroups = (data: GroupRequest) => {
     const url = BASE_URL + "/groups"
-    //const token = localStorage.getItem(LS_TOKEN)
-    axios.get(url, { params: data }).then(
+    return axios.get(url, { params: data }).then(
         (response) => {
-            console.log(response)
+            return response.data
         }
     ).catch(e => console.error(e))
 }

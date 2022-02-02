@@ -1,15 +1,26 @@
-import { FC, memo, useEffect } from "react";
+import { FC, memo, useEffect, useState } from "react";
 import { fetchGroups, logout } from "../../api";
 interface Props {
 }
 const DashboardPage: FC<Props> = (props) => {
+    const [group, setGroup] = useState<any[]>();
     useEffect(() => {
-        fetchGroups({ status: "all-groups" });
+        fetchGroups({ status: "all-groups", query: "group" }).then((groups) => {
+            console.log(groups.data)
+            setGroup(groups.data);
+        })
     }, [])
     return (
         <div>
             <div>
                 this is dashbaord page
+            </div>
+            <div>
+                {
+                    group?.map((e) => {
+                        return <div>{e?.name}</div>
+                    })
+                }
             </div>
             <button
                 className="bg-slate-600 hover:bg-slate-700 text-white font-semibold px-4 py-1 rounded-md mr-6"
