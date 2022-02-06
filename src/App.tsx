@@ -1,33 +1,47 @@
-import { Redirect, Route, Switch } from 'react-router-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { FC, lazy, Suspense } from "react";
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { LS_TOKEN } from './pages/api/base';
-import AppRoute from './pages/appContainerPages/AppRoute';
-import AuthRoute from './pages/authPages/AuthRoute';
 import NotFound from './pages/NotFound';
+import { ImSpinner3 } from 'react-icons/im'
 
-function App() {
+const AuthLazy = lazy(() => import('./pages/authPages/AuthRoute'))
+const AppLazy = lazy(() => import('./pages/appContainerPages/AppRoute'))
+
+interface Props {
+}
+
+const App: FC<Props> = () => {
   const token = localStorage.getItem(LS_TOKEN)
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/" exact>
-          {token ? <Redirect to="/dashboard"></Redirect> : <Redirect to="/login"></Redirect>}
-        </Route>
+    <Suspense fallback={
+      <div className="flex flex-col items-center justify-center mt-40">
+        <ImSpinner3 className="animate-spin h-20 w-20"></ImSpinner3>
+        <div className="text-xl">Please Wait...</div>
+      </div>
+    }>
+      <BrowserRouter>
 
-        <Route path={["/login", "/signup"]} exact>
-          <AuthRoute></AuthRoute>
-        </Route>
+        <Switch>
+          <Route path="/" exact>
+            {token ? <Redirect to="/dashboard"></Redirect> : <Redirect to="/login"></Redirect>}
+          </Route>
 
-        <Route path={["/dashboard", "/recording"]} exact>
-          <AppRoute></AppRoute>
-        </Route>
+          <Route path={["/login", "/signup"]} exact>
+            {token ? <Redirect to="/dashboard"></Redirect> : <AuthLazy></AuthLazy>}
+          </Route>
 
-        <Route >
-          <NotFound></NotFound>
-        </Route>
-      </Switch>
+          <Route path={["/dashboard", "/recording"]} exact>
+            <AppLazy></AppLazy>
+          </Route>
 
-    </BrowserRouter>
+          <Route >
+            <NotFound></NotFound>
+          </Route>
+        </Switch>
+
+      </BrowserRouter>
+    </Suspense>
+
   );
 }
 
