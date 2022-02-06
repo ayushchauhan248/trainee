@@ -3,9 +3,8 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { LS_TOKEN } from './pages/api/base';
 import NotFound from './pages/NotFound';
 import { ImSpinner3 } from 'react-icons/im'
-
-const AuthLazy = lazy(() => import('./pages/authPages/AuthRoute'))
-const AppLazy = lazy(() => import('./pages/appContainerPages/AppRoute'))
+import AuthLazy from "./pages/authPages/AuthLazy";
+import AppLazy from "./pages/appContainerPages/AppLazy";
 
 interface Props {
 }
