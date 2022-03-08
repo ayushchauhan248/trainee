@@ -5,7 +5,6 @@ const AssignmentPage: FC<Props> = (props) => {
     return (
         <div>
             this is assignment oage
-
         </div>
     );
 };

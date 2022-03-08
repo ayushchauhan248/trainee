@@ -7,7 +7,7 @@ interface Props {
 }
 const AppRoute: FC<Props> = (props) => {
     return (
-        <div className="flex flex-row">
+        <div className="flex flex-row space-x-2">
             <Sidebar></Sidebar>
             <Route path="/dashboard">
                 <DashboardPage></DashboardPage>
